@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      verb: {},
+      verb: [],
       swedish: 'ja',
       french: 'oui',
     }
