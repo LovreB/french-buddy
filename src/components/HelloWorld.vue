@@ -6,9 +6,18 @@
     <button @click="getWords">Uppdatera ord</button>
     <h3>New verb</h3>
     <p>Svenska</p>
-    <input v-model="swedish" placeholder="edit me">
+    <input v-model="swedish" placeholder="grundform">
+    <input v-model="swPresent" placeholder="presens">
     <p>Franska</p>
-    <input v-model="french" placeholder="edit me">
+    <input v-model="french" placeholder="grundform">
+    <p>Singular</p>
+    <input v-model="frFirstSingular" placeholder="1:a">
+    <input v-model="frSecondSingular" placeholder="2:a">
+    <input v-model="frThirdSingular" placeholder="3:e">
+    <p>Plural</p>
+    <input v-model="frFirstPlural" placeholder="1:a">
+    <input v-model="frSecondPlural" placeholder="2:a">
+    <input v-model="frThirdPlural" placeholder="3:e">
     <p>Översättning är sv:{{ swedish }}, fr: {{french}}</p>
     <button @click="postWord">Lägg till ord</button>
   </div>
@@ -25,8 +34,15 @@ export default {
   data() {
     return {
       verb: [],
-      swedish: 'ja',
-      french: 'oui',
+      swedish: '',
+      french: '',
+      swPresent: '',
+      frFirstSingular: '',
+      frSecondSingular: '',
+      frThirdSingular: '',
+      frFirstPlural: '',
+      frSecondPlural: '',
+      frThirdPlural: '',
     }
   },
   // Fetches posts when the component is created.
@@ -37,12 +53,20 @@ export default {
     async postWord() {
       axios.post(`http://localhost:5000/verb`, {
         'french': this.french,
-        'swedish': this.swedish
+        'swedish': this.swedish,
+        'swPresent': this.swPresent,
+        'frFirstSingular': this.frFirstSingular,
+        'frSecondSingular': this.frSecondSingular,
+        'frThirdSingular': this.frThirdSingular,
+        'frFirstPlural': this.frFirstPlural,
+        'frSecondPlural': this.frSecondPlural,
+        'frThirdPlural': this.frThirdPlural,
       })
           .then(response => {
             // JSON responses are automatically parsed.
             console.log('success')
             console.log(response)
+            this.clearTables();
           })
           .catch(e => {
             console.log('post error')
@@ -60,6 +84,17 @@ export default {
             console.log("get error")
             console.log(e)
           })
+    },
+    clearTables() {
+      this.swedish = '',
+      this.french = '',
+      this.swPresent = '',
+      this.frFirstSingular = '',
+      this.frSecondSingular = '',
+      this.frThirdSingular = '',
+      this.frFirstPlural = '',
+      this.frSecondPlural = '',
+      this.frThirdPlural = ''
     }
   }
 }

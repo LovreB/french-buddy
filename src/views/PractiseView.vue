@@ -1,37 +1,27 @@
 <template>
   <div class="practise">
     <h2>Practise</h2>
-    <div v-if="verbs">
-      <section-title title="Svenska"/>
-      <p>{{swedish}}</p>
-      <section-title title="Franska"/>
-      <div>
-        <input v-model="translation" v-if="isGuessing"/>
-        <p v-if="!isGuessing">{{french}}</p>
-      </div>
-      <button @click="next">{{buttonText}}</button>
-    </div>
-
+    <translation-simple-box v-if="this.verbs.length > 0"
+      :primary-word="swedish"
+      :secondary-word="french"
+      @next="nextWord"
+    />
   </div>
 </template>
 
 <script>
-import SectionTitle from "@/components/SectionTitle";
+import TranslationSimpleBox from "@/components/TranslationSimpleBox";
 import axios from "axios";
+
 export default {
   name: "PractiseView",
   components: {
-    SectionTitle
-  },
-  props: {
-
+    TranslationSimpleBox
   },
   data () {
     return {
-      translation: '',
       verbs: [],
       index: 0,
-      isGuessing: true,
     }
   },
   computed: {
@@ -40,9 +30,6 @@ export default {
     },
     swedish: function() {
       return this.verbs[this.index]?.swedish;
-    },
-    buttonText: function() {
-      return (this.isGuessing) ? 'Correct' : 'Next'
     }
   },
   created() {
@@ -60,13 +47,12 @@ export default {
             console.log(e)
           })
     },
-    next() {
-      if (!this.isGuessing && this.index < this.verbs.length - 1){
+    nextWord() {
+      if (this.index < this.verbs.length - 1){
         this.index += 1;
       } else {
         // TODO Add transistion
       }
-      this.isGuessing = !this.isGuessing;
     }
   }
 }
