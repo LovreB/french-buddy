@@ -1,5 +1,7 @@
 <template>
-  <div class="section-title">{{title}}</div>
+  <div class="section-title">
+    <p class="section-title__title">{{title}}</p>
+  </div>
 </template>
 
 <script>
@@ -20,5 +22,10 @@ export default {
 .section-title {
   color: $color-primary;
   border-bottom: 1px solid $color-primary;
+  padding: 0.5em;
+  text-align: left;
+  &__title {
+    margin: 0;
+  }
 }
 </style>

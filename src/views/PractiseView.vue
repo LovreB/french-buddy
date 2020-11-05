@@ -6,6 +6,11 @@
       :secondary-word="french"
       @next="nextWord"
     />
+    <results-view
+      v-if="this.showResults"
+      :correctAnswers="correctAnswers"
+      :falseAnswers="wrongAnswers"
+      @play-again="resetRound"/>
   </div>
 </template>
 
@@ -13,16 +18,21 @@
 import TranslationSimpleBox from "@/components/TranslationSimpleBox";
 import {getVerbPresent} from "@/utils/api";
 import {verbToSimple} from "@/utils/wordConverter";
+import ResultsView from "@/views/ResultsView";
 
 export default {
   name: "PractiseView",
   components: {
+    ResultsView,
     TranslationSimpleBox
   },
   data () {
     return {
       verbs: [],
       index: 0,
+      showResults: false,
+      correctAnswers: 0,
+      firstTry: true
     }
   },
   computed: {
@@ -31,6 +41,12 @@ export default {
     },
     swedish: function() {
       return this.verbs[this.index]?.swedish;
+    },
+    wrongAnswers() {
+      return this.verbs.length - this.correctAnswers
+    },
+    hasNextWord() {
+      return this.index < this.verbs.length - 1
     }
   },
   created() {
@@ -39,18 +55,21 @@ export default {
   methods: {
     async getWords() {
       const verbsResponse = await getVerbPresent();
-      console.log(verbsResponse);
-      console.log('hohoho')
       this.verbs = verbToSimple(verbsResponse);
-      console.log(this.verbs);
-      console.log('afterawait')
     },
-    nextWord() {
-      if (this.index < this.verbs.length - 1){
+    nextWord(isFirstTry) {
+      console.log(isFirstTry)
+      if (isFirstTry) {this.correctAnswers += 1}
+      if (this.hasNextWord){
+
         this.index += 1;
       } else {
-        // TODO Add transistion
+        this.showResults = true;
       }
+    },
+    resetRound() {
+      this.showResults = false;
+      this.index = 0;
     }
   }
 }
