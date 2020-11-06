@@ -1,5 +1,7 @@
 <template>
-  <div class="tab-bar-tab">
+  <div class="tab-bar-tab"
+    :class="{'tab-bar-tab--active': isActive}"
+  >
     <router-link :to="route" class="tab-bar-tab__title">
       <img v-if="img" :src="img" class="tab-bar-tab__img"/>
       <p >{{title}}</p>
@@ -12,11 +14,6 @@
 export default {
   name: "TabBarTab",
   props: {
-    isActive: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     img: {
       type: String,
       required: false
@@ -29,6 +26,13 @@ export default {
       type: String,
       required: true
     },
+  },
+  computed: {
+    isActive() {
+      console.log(this.$route.path)
+      console.log(this.route)
+      return this.$route.path === this.route
+    }
   }
 }
 </script>
@@ -36,6 +40,9 @@ export default {
 <style scoped lang="scss" >
 .tab-bar-tab {
   display: flex;
+  &--active {
+    font-weight: bold;
+  }
   &__img {
 
   }
@@ -46,6 +53,7 @@ export default {
       opacity: 0.5;
     }
   }
+
 
 }
 </style>

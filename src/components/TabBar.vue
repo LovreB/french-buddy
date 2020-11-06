@@ -6,6 +6,7 @@
       :title="tab.title"
       :img="tab.img"
       :route="tab.route"
+      :is-active="$route.path === tab.route"
     />
   </div>
 </template>

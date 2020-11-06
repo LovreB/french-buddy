@@ -1,6 +1,7 @@
 <template>
   <div class="section-title">
     <p class="section-title__title">{{title}}</p>
+    <p class="section-title__title">{{secondaryTitle}}</p>
   </div>
 </template>
 
@@ -11,6 +12,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    secondaryTitle: {
+      type: String,
+      required: false
     }
   }
 }
@@ -24,6 +29,9 @@ export default {
   border-bottom: 1px solid $color-primary;
   padding: 0.5em;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em;
   &__title {
     margin: 0;
   }

@@ -1,30 +1,32 @@
 <template>
   <div class="practise">
     <h2>Practise</h2>
-    <translation-simple-box v-if="this.verbs.length > 0"
-      :primary-word="swedish"
-      :secondary-word="french"
-      @next="nextWord"
-    />
-    <results-view
-      v-if="this.showResults"
-      :correctAnswers="correctAnswers"
-      :falseAnswers="wrongAnswers"
-      @play-again="resetRound"/>
+    <WordList v-if="this.verbs && !isPractiseMode"
+      :words="this.verbs"
+      @toggle-word="toggleVerb"
+    ></WordList>
+    <AppButton
+      v-if="this.verbs && !isPractiseMode"
+      @click="beginPractiseMode"
+      title="Start round"/>
+    <PractiseSimpleView v-if="isPractiseMode"
+      :words="selectedWords"/>
   </div>
 </template>
 
 <script>
-import TranslationSimpleBox from "@/components/TranslationSimpleBox";
 import {getVerbPresent} from "@/utils/api";
 import {verbToSimple} from "@/utils/wordConverter";
-import ResultsView from "@/views/ResultsView";
+import WordList from "@/components/WordList";
+import PractiseSimpleView from "@/views/PractiseSimpleView";
+import AppButton from "@/components/AppButton";
 
 export default {
   name: "PractiseView",
   components: {
-    ResultsView,
-    TranslationSimpleBox
+    AppButton,
+    PractiseSimpleView,
+    WordList,
   },
   data () {
     return {
@@ -32,7 +34,10 @@ export default {
       index: 0,
       showResults: false,
       correctAnswers: 0,
-      firstTry: true
+      firstTry: true,
+      isPractiseMode: false,
+      selectedVerbs: [],
+      selectedWords: [],
     }
   },
   computed: {
@@ -54,24 +59,18 @@ export default {
   },
   methods: {
     async getWords() {
-      const verbsResponse = await getVerbPresent();
-      this.verbs = verbToSimple(verbsResponse);
+      this.verbs =  await getVerbPresent();
     },
-    nextWord(isFirstTry) {
-      console.log(isFirstTry)
-      if (isFirstTry) {this.correctAnswers += 1}
-      if (this.hasNextWord){
-
-        this.index += 1;
-      } else {
-        this.showResults = true;
-      }
+    toggleVerb(verb) {
+      let verbIndex = this.selectedVerbs.indexOf(verb);
+      console.log(verbIndex);
+      (verbIndex === -1) ? this.selectedVerbs.push(verb) : this.selectedVerbs.splice(verbIndex, 1)
     },
-    resetRound() {
-      this.showResults = false;
-      this.index = 0;
-      this.correctAnswers = 0;
+    beginPractiseMode() {
+      this.selectedWords = verbToSimple(this.selectedVerbs);
+      this.isPractiseMode = true;
     }
+
   }
 }
 </script>
