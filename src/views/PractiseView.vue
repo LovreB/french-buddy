@@ -70,6 +70,7 @@ export default {
     resetRound() {
       this.showResults = false;
       this.index = 0;
+      this.correctAnswers = 0;
     }
   }
 }

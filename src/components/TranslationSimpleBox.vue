@@ -54,8 +54,8 @@ export default {
   methods: {
     checkAnswer(){
       if (this.isCorrectAnswer) {
-        this.resetValues();
         this.$emit('next', this.isFirstTry);
+        this.resetValues();
       } else {
         this.showError = true;
         this.isFirstTry = false;
