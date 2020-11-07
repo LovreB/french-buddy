@@ -1,6 +1,6 @@
 <template>
   <div class="app-button" @click="$emit('click')">
-    {{this.title}}
+    <p class="app-button__text">{{this.title}}</p>
   </div>
 </template>
 
@@ -22,8 +22,11 @@ export default {
 .app-button {
   background-color: $color-primary;
   color: white;
-  border-radius: 0.5em;
-  padding: 0.5em;
-  margin: 0.5em;
+  border-radius: $border-radius;
+  padding: $border-radius 1.5em;
+  margin: $border-radius;
+  &__text {
+    margin: 0em;
+  }
 }
 </style>
