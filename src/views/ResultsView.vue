@@ -3,13 +3,18 @@
     <h2>Nice work! Your results:</h2>
     <p>Correct Answers: {{correctAnswers}}</p>
     <p>Wrong Answers: {{falseAnswers}}</p>
-    <button @click="$emit('play-again')">Spela igen</button>
+    <AppButton @click="$emit('play-again')" title="Play again" class="results-view__button"/>
   </div>
 </template>
 
 <script>
+import AppButton from "@/components/AppButton";
+
 export default {
   name: "ResultsView",
+  components: {
+    AppButton
+  },
   props: {
     correctAnswers: {
       type: Number,
@@ -23,6 +28,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import ".././styles/variables.scss";
 
+.results-view {
+  &__button {
+    margin: auto;
+    width: 30%
+  }
+}
 </style>
