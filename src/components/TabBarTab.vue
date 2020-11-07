@@ -29,8 +29,6 @@ export default {
   },
   computed: {
     isActive() {
-      console.log(this.$route.path)
-      console.log(this.route)
       return this.$route.path === this.route
     }
   }

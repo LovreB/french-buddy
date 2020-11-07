@@ -63,7 +63,6 @@ export default {
     },
     toggleVerb(verb) {
       let verbIndex = this.selectedVerbs.indexOf(verb);
-      console.log(verbIndex);
       (verbIndex === -1) ? this.selectedVerbs.push(verb) : this.selectedVerbs.splice(verbIndex, 1)
     },
     beginPractiseMode() {
