@@ -12,14 +12,14 @@
 import TabBar from "@/components/TabBar";
 export default {
   name: 'App',
-  components: {TabBar},
+  components: { TabBar},
   data() {
     return {
       tabs: [{
-        title: 'add',
+        title: 'Add',
         route: '/add',
       }, {
-        title: 'practise',
+        title: 'Practise',
         route: '/practise',
       }
 
@@ -41,12 +41,16 @@ export default {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   &__tab-bar {
-    flex-grow: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $height-tabbar;
   }
   &__router-view {
-    flex-grow: 1;
+    height: calc(100vh - #{$height-tabbar});
+    overflow: scroll;
   }
 }
 </style>

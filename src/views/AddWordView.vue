@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <h3>New present verb</h3>
+  <div class="add-word-view">
+    <AppNavBar title="New present verb"/>
     <SectionTitle title="Swedish"/>
     <div class="input-container">
       <input v-model="swedish" class="input-container__input" placeholder="sw basic form">
@@ -30,10 +30,11 @@
 import {postVerbPresent} from "@/utils/api";
 import SectionTitle from "@/components/SectionTitle";
 import AppButton from "@/components/AppButton";
+import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: 'AddWordView',
-  components: {AppButton, SectionTitle},
+  components: {AppButton, AppNavBar, SectionTitle},
   props: {
     msg: String
   },

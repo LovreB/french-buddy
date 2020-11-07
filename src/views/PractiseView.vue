@@ -1,6 +1,6 @@
 <template>
   <div class="practise">
-    <h2>Practise</h2>
+    <AppNavBar title="Practise Verb"/>
     <WordList v-if="this.verbs && !isPractiseMode"
       :words="this.verbs"
       @toggle-word="toggleVerb"
@@ -20,10 +20,12 @@ import {verbToSimple} from "@/utils/wordConverter";
 import WordList from "@/components/WordList";
 import PractiseSimpleView from "@/views/PractiseSimpleView";
 import AppButton from "@/components/AppButton";
+import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: "PractiseView",
   components: {
+    AppNavBar,
     AppButton,
     PractiseSimpleView,
     WordList,

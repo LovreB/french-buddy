@@ -36,12 +36,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import ".././styles/variables.scss";
 
 .word-list-row{
   display: flex;
   justify-content: space-between;
   padding: 0 1em;
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid $color-grey;
 
   &__primary-word {
     border-bottom: none !important;

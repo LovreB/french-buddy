@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style scoped lang="scss" >
+@import ".././styles/variables.scss";
 .tab-bar-tab {
   display: flex;
   &--active {
@@ -45,11 +46,8 @@ export default {
 
   }
   &__title {
-    color: white;
+    color: $color-primary;
     text-decoration: none;
-    :hover {
-      opacity: 0.5;
-    }
   }
 
 

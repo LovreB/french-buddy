@@ -30,8 +30,10 @@ export default {
 @import ".././styles/variables.scss";
 
 .tab-bar {
-  background-color: $color-primary;
+  background-color: $color-grey-light;
   display: flex;
   justify-content: space-around;
+  border-top: 1px solid $color-grey;
+  height: $height-tabbar;
 }
 </style>

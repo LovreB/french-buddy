@@ -26,10 +26,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import ".././styles/variables.scss";
 
 .word-list {
   &__last-row {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid $color-grey;
   }
 }
 </style>
