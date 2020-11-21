@@ -1,10 +1,10 @@
 <template>
-  <div class="practise">
-    <translation-simple-box v-if="this.words.length > 0"
-                            :primary-word="swedish"
-                            :secondary-word="french"
-                            @next="nextWord"
-    />
+  <div class="word-practise">
+    <translation-simple-box
+        v-if="this.words.length > 0"
+        :primary-word="swedish"
+        :secondary-word="french"
+        @next="nextWord"/>
     <results-view
         v-if="this.showResults"
         :correctAnswers="correctAnswers"

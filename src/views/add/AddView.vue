@@ -33,7 +33,7 @@ import AppButton from "@/components/AppButton";
 import AppNavBar from "@/components/AppNavBar";
 
 export default {
-  name: 'AddWordView',
+  name: 'AddView',
   components: {AppButton, AppNavBar, SectionTitle},
   props: {
     msg: String
@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import ".././styles/variables.scss";
+@import "../../styles/variables";
 .input-container {
   text-align: right;
   &__input {
