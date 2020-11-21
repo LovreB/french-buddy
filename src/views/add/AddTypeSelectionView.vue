@@ -12,7 +12,7 @@
 import AppButton from "@/components/AppButton";
 
 export default {
-  name: "PractiseTypeSelectionView",
+  name: "AddTypeSelectionView",
   components: {
     AppButton
   },
@@ -20,13 +20,10 @@ export default {
     return {
       wordTypes: [{
         name: "Verb",
-        routeName: "practiseVerb"
-      },{
-        name: "Category",
-        routeName: "practiseCategory"
+        routeName: "addVerb"
       },{
         name: "Other",
-        routeName: "practiseOther"
+        routeName: "addOther"
       }]
     }
   },

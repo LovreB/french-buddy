@@ -1,40 +1,17 @@
 <template>
   <div class="add-word-view">
-    <AppNavBar title="New present verb"/>
-    <SectionTitle title="Swedish"/>
-    <div class="input-container">
-      <input v-model="swedish" class="input-container__input" placeholder="sw basic form">
-      <input v-model="swPresent" class="input-container__input" placeholder="present">
-    </div>
-    <SectionTitle title="French"/>
-    <div class="input-container">
-      <input v-model="french" class="input-container__input" placeholder="fr basic form">
-    </div>
-    <SectionTitle title="French Singular"/>
-    <div class="input-container">
-      <input v-model="frFirstSingular" class="input-container__input" placeholder="1:a">
-      <input v-model="frSecondSingular" class="input-container__input" placeholder="2:a">
-      <input v-model="frThirdSingular" class="input-container__input" placeholder="3:e">
-    </div>
-    <SectionTitle title="French Plural"/>
-    <div class="input-container">
-      <input v-model="frFirstPlural" class="input-container__input" placeholder="1:a">
-      <input v-model="frSecondPlural" class="input-container__input" placeholder="2:a">
-      <input v-model="frThirdPlural" class="input-container__input" placeholder="3:e">
-    </div>
-    <AppButton @click="postWord" title="Add word"/>
+    <AppNavBar title="New word"/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import {postVerbPresent} from "@/utils/api";
-import SectionTitle from "@/components/SectionTitle";
-import AppButton from "@/components/AppButton";
 import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: 'AddView',
-  components: {AppButton, AppNavBar, SectionTitle},
+  components: {AppNavBar},
   props: {
     msg: String
   },
