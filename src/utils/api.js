@@ -22,7 +22,6 @@ export async function getWordsInCategories(categories) {
     let baseEndpoint = ENDPOINTS.word + PARAMS.category;
     let categoryEndpoint = categories.join(",")
     const endpoint = baseEndpoint + categoryEndpoint
-    console.log(endpoint)
     return axiosGet(endpoint)
 }
 export async function getAllCategories() {
@@ -33,13 +32,21 @@ export async function postVerbPresent(verb) {
     return axiosPost(ENDPOINTS.verb, verb)
 }
 
-export async function postWordOther(word) {
-    return axiosPost(ENDPOINTS.word, word)
+export async function postCategory(category) {
+    return axiosPost(ENDPOINTS.category, category)
+}
+
+export async function postWordOther(word, categoryIds) {
+    let endpoint = (categoryIds) ? ENDPOINTS.word + PARAMS.category : ENDPOINTS.word;
+    if (categoryIds) {
+        let categoryEndpoint = categoryIds.join(",")
+        endpoint = endpoint + categoryEndpoint
+    }
+    return axiosPost(endpoint, word)
 }
 
 
 async function axiosGet(urlEndpoint) {
-    console.log('hohoh')
     const url = BACKEND_URL + urlEndpoint
     return axios.get(url)
         .then(response => {

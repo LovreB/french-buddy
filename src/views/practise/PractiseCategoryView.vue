@@ -29,7 +29,6 @@ export default {
     }
   },
   mounted() {
-    console.log('mountedss')
     this.getWords()
   },
   methods: {
@@ -37,14 +36,11 @@ export default {
       this.words =  await getAllCategories();
     },
     async beginRound(selectedCategories) {
-      console.log('in begin round')
       let categoryIds = selectedCategories.map(c => c.id)
       this.selectedWords = await getWordsInCategories(categoryIds);
-      console.log(this.selectedWords)
       this.selectedWords.push(...selectedCategories)
       this.isPractiseMode = true;
     }
-
   }
 }
 </script>

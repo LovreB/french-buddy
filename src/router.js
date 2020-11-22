@@ -9,6 +9,7 @@ import AddTypeSelectionView from "@/views/add/AddTypeSelectionView";
 import AddVerbView from "@/views/add/AddVerbView";
 import AddOtherView from "@/views/add/AddOtherView";
 import PractiseCategoryView from "@/views/practise/PractiseCategoryView";
+import AddCategoryView from "@/views/add/AddCategoryView";
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,7 @@ const router = new VueRouter({
                 { path: '',  name: 'AddHome', component: AddTypeSelectionView },
                 { path: 'other', name: 'addOther', component: AddOtherView },
                 { path: 'verb', name: 'addVerb', component: AddVerbView },
+                { path: 'category', name: 'addCategory', component: AddCategoryView },
             ]},
         { path: '/practise', component: PractiseView,
             children: [

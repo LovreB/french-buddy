@@ -22,6 +22,9 @@ export default {
         name: "Verb",
         routeName: "addVerb"
       },{
+        name: "Category",
+        routeName: "addCategory"
+      },{
         name: "Other",
         routeName: "addOther"
       }]
