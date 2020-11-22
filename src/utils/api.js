@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BACKEND_URL = 'https://french-buddy-backend.herokuapp.com'
-const BACKEND_URL = 'http://localhost:5000'
+const BACKEND_URL = 'https://french-buddy-backend.herokuapp.com'
+// const BACKEND_URL = 'http://localhost:5000'
 
 const ENDPOINTS = {
     word: "/word",
