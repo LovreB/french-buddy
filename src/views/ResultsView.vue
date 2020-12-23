@@ -3,7 +3,8 @@
     <h2>Nice work! Your results:</h2>
     <p>Correct Answers: {{correctAnswers}}</p>
     <p>Wrong Answers: {{falseAnswers}}</p>
-    <AppButton @click="$emit('play-again')" title="Play again" class="results-view__button"/>
+    <AppButton @click="$emit('play-again', false)" title="Play again" class="results-view__button"/>
+    <AppButton v-if="(falseAnswers > 0)" @click="$emit('play-again', true)" title="Retry wrong answers" class="results-view__button"/>
   </div>
 </template>
 
@@ -34,7 +35,8 @@ export default {
 .results-view {
   &__button {
     margin: auto;
-    width: 30%
+    width: 30%;
+    margin-bottom: 1em;
   }
 }
 </style>

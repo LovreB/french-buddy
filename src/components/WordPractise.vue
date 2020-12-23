@@ -1,7 +1,7 @@
 <template>
   <div class="word-practise">
     <translation-simple-box
-        v-if="this.words.length > 0"
+        v-if="this.selectedWords.length > 0"
         :primary-word="swedish"
         :secondary-word="french"
         @next="nextWord"/>
@@ -9,7 +9,8 @@
         v-if="this.showResults"
         :correctAnswers="correctAnswers"
         :falseAnswers="wrongAnswers"
-        @play-again="resetRound"/>
+        @play-again="resetRound"
+    />
   </div>
 </template>
 
@@ -30,36 +31,56 @@ export default {
   },
   data () {
     return {
+      selectedWords: [],
       index: 0,
       showResults: false,
       correctAnswers: 0,
-      firstTry: true
+      firstTry: true,
+      wrongAnsweredWords: [],
+    }
+  },
+  watch: {
+    words(oldwords, newwords) {
+      console.log(`old ${oldwords}`)
+      console.log(`old ${newwords}`)
+      this.selectedWords = newwords;
     }
   },
   computed: {
     french: function() {
-      return this.words[this.index]?.french;
+      return this.selectedWords[this.index]?.french;
     },
     swedish: function() {
-      return this.words[this.index]?.swedish;
+      return this.selectedWords[this.index]?.swedish;
     },
     wrongAnswers() {
-      return this.words.length - this.correctAnswers
+      return this.selectedWords.length - this.correctAnswers
     },
     hasNextWord() {
-      return this.index < this.words.length - 1
+      return this.index < this.selectedWords.length - 1
     }
+  },
+  created: function () {
+    this.selectedWords = this.words;
   },
   methods: {
     nextWord(isFirstTry) {
-      if (isFirstTry) {this.correctAnswers += 1}
+      if (isFirstTry) {
+        this.correctAnswers += 1
+      } else {
+        this.wrongAnsweredWords.push(this.words[this.index])
+      }
       if (this.hasNextWord){
         this.index += 1;
       } else {
         this.showResults = true;
       }
     },
-    resetRound() {
+    resetRound(onlyUseWrongAnswers) {
+      if (onlyUseWrongAnswers) {
+        this.selectedWords = this.wrongAnsweredWords;
+      }
+      this.wrongAnsweredWords = [];
       this.showResults = false;
       this.index = 0;
       this.correctAnswers = 0;
