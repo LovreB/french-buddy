@@ -5,7 +5,12 @@
       <p>{{primaryWord}}</p>
       <section-title :title="secondaryTitle"/>
       <div class="input-container">
-        <input v-model="answer" class="input-container__input" :class="{'input-container__input--error': showError}"/>
+        <input
+            v-model="answer"
+            class="input-container__input"
+            autocorrect="off"
+            autocapitalize="none"
+            :class="{'input-container__input--error': showError}"/>
       </div>
     </div>
     <div class="button-container">
