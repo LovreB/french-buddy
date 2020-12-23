@@ -1,7 +1,7 @@
 <template>
   <div class="word-practise">
     <translation-simple-box
-        v-if="this.selectedWords.length > 0"
+        v-if="this.selectedWords.length > 0 && !this.showResults"
         :primary-word="swedish"
         :secondary-word="french"
         @next="nextWord"/>
