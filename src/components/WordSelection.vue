@@ -5,8 +5,11 @@
       @toggle-word="toggleWord"
     ></WordList>
     <AppButton
+        title="Start round"
+        :disabled="selectedWords.length == 0"
         @click="$emit('begin-round', selectedWords)"
-        title="Start round"/>
+
+        />
   </div>
 </template>
 
