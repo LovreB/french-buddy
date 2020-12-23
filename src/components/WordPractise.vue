@@ -54,7 +54,6 @@ export default {
     nextWord(isFirstTry) {
       if (isFirstTry) {this.correctAnswers += 1}
       if (this.hasNextWord){
-
         this.index += 1;
       } else {
         this.showResults = true;

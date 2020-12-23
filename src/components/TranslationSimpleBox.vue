@@ -14,7 +14,6 @@
     </div>
     <p v-if="showError" class="error">Fel svar!</p>
     <p v-if="isShowingAnswer">Correct answer is: {{secondaryWord}}</p>
-
   </div>
 </template>
 
@@ -81,6 +80,7 @@ export default {
       this.answer = '';
       this.isFirstTry = true;
       this.showError = false;
+      this.isShowingAnswer = false;
     }
   }
 }
