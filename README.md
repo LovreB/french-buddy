@@ -1,4 +1,5 @@
-# frenchbuddy
+# French-buddy
+Deployed at http://french-buddy.lovre.se/
 
 ## Project setup
 ```

@@ -1,17 +1,14 @@
 <template>
   <div class="add-word-view">
-    <AppNavBar title="New word"/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import {postVerbPresent} from "@/utils/api";
-import AppNavBar from "@/components/AppNavBar";
 
 export default {
   name: 'AddView',
-  components: {AppNavBar},
   props: {
     msg: String
   },
